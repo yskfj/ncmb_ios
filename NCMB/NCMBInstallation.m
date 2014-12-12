@@ -35,6 +35,7 @@
     [tokenId setString:[tokenId stringByReplacingOccurrencesOfString:@"<" withString:@""]];
     [tokenId setString:[tokenId stringByReplacingOccurrencesOfString:@">" withString:@""]];
     [self setObject:tokenId forKey:@"deviceToken"];
+    self.deviceToken = tokenId;
 }
 
 -(NSDictionary*)getLocalData{
