@@ -225,7 +225,10 @@ typedef enum : NSInteger {
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0){
         signature = [HMAC base64EncodedStringWithOptions:kNilOptions];
     } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         signature = [HMAC base64Encoding];
+#pragma clang diagnostic pop
     }
     return signature;
 }
