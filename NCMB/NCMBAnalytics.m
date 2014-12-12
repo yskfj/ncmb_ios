@@ -31,9 +31,14 @@
     NSString * pushId = [userInfo objectForKey:@"com.nifty.PushId"];
     NCMBInstallation *installation = [NCMBInstallation currentInstallation];
     if (pushId != nil && installation != nil){
+        NSString *deviceType = installation.deviceType;
+        if (deviceType == nil || [deviceType isEqual:[NSNull null]]) deviceType = @"";
+        NSString *deviceToken = installation.deviceToken;
+        if (deviceToken == nil || [deviceToken isEqual:[NSNull null]]) deviceToken = @"";
+        
         //コネクションを作成
-        NSDictionary *requestData = @{@"deviceType":installation.deviceType,
-                                     @"deviceToken":installation.deviceToken
+        NSDictionary *requestData = @{@"deviceType":deviceType,
+                                     @"deviceToken":deviceToken
                                      };
         NSError *error = nil;
         NSData *json = [NSJSONSerialization dataWithJSONObject:requestData
